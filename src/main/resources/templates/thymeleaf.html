@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>thymeleaf</title>
+</head>
+<body>
+<div id="div1" th:text="${div1}">此处是div1</div>
+<!--<div id="div2" th:utext="<h1>哈哈哈div2</h1>">此处是div2</div>
+<div id="div3" th:text="哈哈哈div3" th>此处是div3</div>-->
+
+<table>
+    <tr>
+        <td  th:each="l : ${list}" th:text="${l}=='item1'?'item1':'false'"></td>
+        <td  th:each="l : ${list}">[[${l}=='item1'?'item1':'false']]</td>
+    </tr>
+</table>
+
+
+</body>
+</html>
