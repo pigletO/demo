@@ -49,6 +49,21 @@
             <version>3.3.0</version>
         </dependency>
 
+        <!-- 引入lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.20</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 引入该依赖以允许使用自定义ConfigurationProperties注解-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <!-- 测试所需库 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

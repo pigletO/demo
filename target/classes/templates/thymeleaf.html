@@ -11,7 +11,7 @@
 
 <table>
     <tr>
-        <!--<td  th:each="l : ${list}" th:text="${l}=='item1'?'item1':'false'"></td>-->
+        <td  th:each="l : ${list}" th:text="${l}=='item1'?'item1':'false'"></td>
         <td  th:each="l : ${list}">[[${l}=='item1'?'item1':'false']]</td>
     </tr>
 </table>
