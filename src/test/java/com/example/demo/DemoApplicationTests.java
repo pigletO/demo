@@ -16,6 +16,7 @@ public class DemoApplicationTests {
     @Test
     public void contextLoads() {
         System.out.println(humen);
+        System.out.println("abc");
     }
 
 }
