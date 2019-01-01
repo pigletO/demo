@@ -9,9 +9,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMVNConfiguration extends WebMvcConfigurationSupport {
 
+    /**
+     * 拓展webMVC中的视图控制器，向容器中添加指定请求和处理
+     * @param registry
+     */
     @Override
     protected void addViewControllers(ViewControllerRegistry registry) {
         //super.addViewControllers(registry);
         registry.addViewController("support").setViewName("thymeleaf");
+        registry.addViewController("/").setViewName("index");
+        registry.addViewController("/index.html").setViewName("index");
     }
 }
