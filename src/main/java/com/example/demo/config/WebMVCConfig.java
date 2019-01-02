@@ -1,5 +1,10 @@
 package com.example.demo.config;
 
+import com.example.demo.entity.Humen;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
 
@@ -21,5 +26,16 @@ public class WebMVCConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/asserts/css/**").addResourceLocations("classpath:/static/asserts/css/");
         registry.addResourceHandler("/asserts/js/**").addResourceLocations("classpath:/static/asserts/js/");
         registry.addResourceHandler("/asserts/img/**").addResourceLocations("classpath:/static/asserts/img/");*/
+    }
+
+    // 此类为配置类优先于@Compent加载，所以加载此类时，容器中未存在Humen类，所以一定执行
+    // 经测试，先给spring注入此类，再进行配置文件赋值配置并不冲突，可以正常赋值
+    //给spring注入一个Humen组件
+    @Bean
+    @ConditionalOnBean(Humen.class)
+    public Humen returnHumen(){
+        Humen humen = new Humen();
+        System.out.println(humen.toString());
+        return humen;
     }
 }

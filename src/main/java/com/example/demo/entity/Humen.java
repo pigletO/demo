@@ -10,7 +10,9 @@ import java.util.Map;
 
 @Data
 @Component
+// 指定此Bean中的属性在配置文件中以humen为前缀进行配置
 @ConfigurationProperties(prefix = "humen")
+// 指定配置文件的路径，默认为全局配置文件
 @PropertySource(value = "classpath:/properties/humen.properties")
 public class Humen {
 
