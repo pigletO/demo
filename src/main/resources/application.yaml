@@ -5,9 +5,9 @@ spring:
   http:
     encoding:
       charset: utf-8
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
+  #添加springboot静态资源映射
+#  resources:
+#    static-locations: ["classpath:/META-INF/resources","classpath:/resources","classpath:/static","classpath:/public"]
 
 
 #humen:
@@ -27,8 +27,8 @@ spring:
 
 
 ---
-spring:
-     mvc:
-       formcontent:
-         putfilter:
-           enabled
+#spring:
+#     mvc:
+#       formcontent:
+#         putfilter:
+#           enabled
