@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import com.example.demo.component.LocaleResolver;
 import com.example.demo.entity.Humen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -7,6 +8,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
+
+import java.util.Locale;
 
 // 声明此类为配置类，实现WebMvcConfigurer类，实现其中的方法，实现拓展配置springmvc
 // 区别于WebMvcConfigurationSupport类，继承WebMvcConfigurationSupport类，会springboot对MVC的自动配置！！
@@ -17,6 +20,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         // 默认“/”请求会在静态资源默认目录下寻找index.html，再次配置index请求映射到templates/index.html
         registry.addViewController("/").setViewName("index");
+        registry.addViewController("/index").setViewName("index");
         registry.addViewController("/index.html").setViewName("index");
     }
 
@@ -37,5 +41,10 @@ public class WebMVCConfig implements WebMvcConfigurer {
         Humen humen = new Humen();
         System.out.println(humen.toString());
         return humen;
+    }
+
+    @Bean
+    public LocaleResolver localeResolver() {
+       return new LocaleResolver();
     }
 }

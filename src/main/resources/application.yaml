@@ -29,8 +29,6 @@ spring:
 #  pet:
 #    name: "熊熊"
 #    sex: "雄"
-
-
 ---
 #spring:
 #     mvc:
