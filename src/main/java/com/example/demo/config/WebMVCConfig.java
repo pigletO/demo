@@ -10,7 +10,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("support").setViewName("thymeleaf");
+        // 默认“/”请求会在静态资源默认目录下寻找index.html，再次配置index请求映射到templates/index.html
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/index.html").setViewName("index");
     }
