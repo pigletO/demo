@@ -28,6 +28,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
     // 添加地址栏请求静态资源的映射
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
         /*registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
         registry.addResourceHandler("/asserts/css/**").addResourceLocations("classpath:/static/asserts/css/");
         registry.addResourceHandler("/asserts/js/**").addResourceLocations("classpath:/static/asserts/js/");
@@ -39,8 +40,8 @@ public class WebMVCConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         // webjars请求下的静态资源不需要排除，springboot已经做好了静态映射
         // 拦截/** 项目的所有请求，但要把请求登录页面和登录执行的RequestMapping除外
-        //registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/","/user/dashboard");
-        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/main.html");
+        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/","/index","/index.html","/user/dashboard","/static/**");
+       //registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/main.html");
 
     }
 

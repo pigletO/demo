@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.webjars.bower:echarts:4.1.0-release">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/webjars/bower/echarts/4.1.0-release/echarts-4.1.0-release.jar!/" />
+      <root url="jar://$USER_HOME$/.m2/repository/org/webjars/bower/echarts/4.1.0-release/echarts-4.1.0-release.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/org/webjars/bower/echarts/4.1.0-release/echarts-4.1.0-release-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.m2/repository/org/webjars/bower/echarts/4.1.0-release/echarts-4.1.0-release-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/webjars/bower/echarts/4.1.0-release/echarts-4.1.0-release-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.m2/repository/org/webjars/bower/echarts/4.1.0-release/echarts-4.1.0-release-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
