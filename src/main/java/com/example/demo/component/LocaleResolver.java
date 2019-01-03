@@ -18,6 +18,7 @@ public class LocaleResolver implements org.springframework.web.servlet.LocaleRes
         String l = httpServletRequest.getParameter("l");
         Locale locale = Locale.getDefault();
         if(!StringUtils.isEmpty(l)){
+            // 按照_分割http请求地址中的zh_CN、en_US等
             String [] splits = l.split("_");
             locale = new Locale(splits[0], splits[1]);
         }

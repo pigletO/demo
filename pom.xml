@@ -71,6 +71,20 @@
             <version>4.2.1</version>
         </dependency>
 
+        <!-- 引入echars -->
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>echarts</artifactId>
+            <version>4.1.0-release</version>
+        </dependency>
+
+        <!-- 引入chart.js -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>chartjs</artifactId>
+            <version>2.7.3</version>
+        </dependency>
+
         <!-- 测试所需库 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
