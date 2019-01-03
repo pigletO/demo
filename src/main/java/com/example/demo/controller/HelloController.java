@@ -3,10 +3,8 @@ package com.example.demo.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,10 +33,40 @@ public class HelloController {
         return "thymeleaf";
     }
 
-    @RequestMapping(value = "/{id}/index",method = RequestMethod.GET)
+    //@RequestMapping(value = "/{id}/index",method = RequestMethod.GET)
+    @GetMapping(value = "/{id}/index")
     public String welComePage(@PathVariable(value = "id") String id){
         logger.info("执行/"+id+"/index请求！");
         System.out.println(id);
         return "index";
     }
+
+    /**
+     * 从index页面跳转dashboard页面
+     * @param Username
+     * @param Password
+     * @param map
+     * @return
+     */
+    //@RequestMapping(value = "/dashboard",method = RequestMethod.POST)
+    @PostMapping(value = "/dashboard")
+    public String turnToDashboard(String Username,String Password,Map<String,Object> map){
+        if("abc".equals(Username)&&"123".equals(Password))
+            return "dashboard";
+        else
+            map.put("msg", "用户名或密码不正确！");
+        return "index";
+    }
+
+    /**
+     * 从dashboard页面跳转list页面
+     * @return
+     */
+    //@RequestMapping(value = "/list",method = RequestMethod.GET)
+    @GetMapping(value = "/list")
+    public String turnToList(){
+
+        return "list";
+    }
+
 }

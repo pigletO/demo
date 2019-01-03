@@ -3,6 +3,7 @@ server:
 #  servlet:
 #    context-path: /springBootDemo
 
+
 spring:
   http:
     encoding:
@@ -10,6 +11,9 @@ spring:
   #修改国际化配置文件读取路径
   messages:
     basename: i18n.login
+  #禁用thymeleaf模板引擎的缓存功能
+  thymeleaf:
+    cache: false
 
 #添加springboot静态资源映射
 #  resources:
