@@ -10,10 +10,10 @@
 
 		<title>Dashboard Template for Bootstrap</title>
 		<!-- Bootstrap core CSS -->
-		<link href="asserts/css/bootstrap.min.css" th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
+		<link href="asserts/css/bootstrap.min.css" th:href="@{/static/asserts/css/bootstrap.min.css}" rel="stylesheet">
 
 		<!-- Custom styles for this template -->
-		<link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+		<link href="asserts/css/dashboard.css" th th:href="@{/static/asserts/css/dashboard.css}" rel="stylesheet">
 		<style type="text/css">
 			/* Chart.js */
 			
@@ -43,7 +43,7 @@
 	</head>
 
 	<body>
-		<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+		<!--<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0" th:replace="~{dashboard :: topbar}">
 			<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">Company name</a>
 			<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
 			<ul class="navbar-nav px-3">
@@ -51,7 +51,8 @@
 					<a class="nav-link" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">Sign out</a>
 				</li>
 			</ul>
-		</nav>
+		</nav>-->
+		<div th:replace="~{dashboard :: topbar}"></div>
 
 		<div class="container-fluid">
 			<div class="row">

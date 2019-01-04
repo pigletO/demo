@@ -52,7 +52,7 @@ public class HelloController {
     //@RequestMapping(value = "/dashboard",method = RequestMethod.POST)
     @PostMapping(value = "/user/dashboard")
     public String turnToDashboard(String Username, String Password, Map<String,Object> map, HttpSession session){
-        if("abc".equals(Username)&&"123".equals(Password)) {
+        if("123".equals(Password)) {
             // 向Session中添加参数，以判断是否有用户已经登录
             session.setAttribute("loginUser", Username);
             // 为防止表单重复提交，进行重定向，'/'代表请求根地址，不带'/'即在当前地址后继续追加

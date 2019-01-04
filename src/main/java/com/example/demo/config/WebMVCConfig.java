@@ -38,9 +38,10 @@ public class WebMVCConfig implements WebMvcConfigurer {
     // 添加springmvc拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        // webjars请求下的静态资源不需要排除，springboot已经做好了静态映射
+        String[] excludePathPatterns = {"/index", "/index.html", "/user/dashboard","/static/**", "/webjars/**", "classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"};
+        // 在springboot1.x下，webjars请求下的静态资源不需要排除，springboot已经做好了静态映射
         // 拦截/** 项目的所有请求，但要把请求登录页面和登录执行的RequestMapping除外
-        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/","/index","/index.html","/user/dashboard","/static/**");
+        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns(excludePathPatterns);
        //registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/main.html");
 
     }
