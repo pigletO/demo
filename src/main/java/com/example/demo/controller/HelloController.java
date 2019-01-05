@@ -1,15 +1,16 @@
 package com.example.demo.controller;
 
+import com.example.demo.dao.EmployeeDao;
+import com.example.demo.entity.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 
 /*@RestController
@@ -62,15 +63,20 @@ public class HelloController {
         return "index";
     }
 
+    @Autowired
+    private EmployeeDao employeeDao;
+
     /**
      * 从dashboard页面跳转list页面
      * @return
      */
     //@RequestMapping(value = "/list",method = RequestMethod.GET)
     @GetMapping(value = "/list")
-    public String turnToList(){
+    public String turnToList(Map<String,Object> map){
 
-        return "list";
+        Collection<Employee> emps = employeeDao.getAll();
+        map.put("emps", emps);
+        return "emp/list";
     }
 
 }
