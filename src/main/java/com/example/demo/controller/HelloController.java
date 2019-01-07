@@ -63,20 +63,4 @@ public class HelloController {
         return "index";
     }
 
-    @Autowired
-    private EmployeeDao employeeDao;
-
-    /**
-     * 从dashboard页面跳转list页面
-     * @return
-     */
-    //@RequestMapping(value = "/list",method = RequestMethod.GET)
-    @GetMapping(value = "/list")
-    public String turnToList(Map<String,Object> map){
-
-        Collection<Employee> emps = employeeDao.getAll();
-        map.put("emps", emps);
-        return "emp/list";
-    }
-
 }

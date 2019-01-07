@@ -50,35 +50,50 @@
 				<div th:replace="common/bar :: #sidebar(activeUrl='/list')"></div>
 
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-					<h2>Section title</h2>
-					<p><a class="btn btn-sm btn-success" href="emp" th:href="@{/emp}">添加员工</a></p>
-					<div class="table-responsive">
-						<table class="table table-striped table-sm">
-							<thead>
-								<tr>
-									<th>id</th>
-									<th>lastName</th>
-									<th>email</th>
-									<th>gender</th>
-									<th>department</th>
-									<th>birth</th>
-									<th>操作</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="emp : ${emps}">
-									<td>[[${emp.id}]]</td>
-									<td>[[${emp.lastName}]]</td>
-									<td>[[${emp.email}]]</td>
-									<td>[[${emp.gender} == 0 ?'女':'男']]</td>
-									<td>[[${emp.department.departmentName}]]</td>
-									<td>[[${#dates.format(emp.birth,'yyyy-MM-dd hh:mm:ss')}]]</td>
-									<td><button type="button" class="btn btn-primary btn-sm">编辑</button><button type="button" class="btn btn-sm btn-danger">删除</button></td>
-								</tr>
-							</tbody>
-
-						</table>
-					</div>
+					<h3>addEmployeePage</h3>
+					<form action="/emp" method="post" th:action="@{/emp}" th:method="post">
+						<div class="form-group">
+							<label for="exampleFormControlInput1">EmployeeName</label>
+							<input type="text" class="form-control" name="employeeName" id="exampleFormControlInput1" placeholder="张 三">
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlInput1">Email address</label>
+							<input type="email" class="form-control" name="email" id="exampleFormControlInput2" placeholder="name@example.com">
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlInput1">Gender</label>
+							<input type="text" class="form-control" name="gender" id="exampleFormControlInput3" placeholder="男">
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlSelect1">DepartmentName</label>
+							<select class="form-control" id="exampleFormControlSelect1" name="departmentName">
+								<option>IT研发一部</option>
+								<option>IT研发二部</option>
+								<option>IT研发三部</option>
+								<option>IT研发四部</option>
+								<option>IT研发五部</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlInput1">BirthDay</label>
+							<input type="text" class="form-control" name="birthDay" id="exampleFormControlInput4" placeholder="1995-06-29 09:16:48">
+						</div>
+						<p><button type="submit" class="btn btn-success btn-sm">添加</button><button type="reset" class="btn btn-sm btn-danger">重置</button> </p>
+						<!--<div class="form-group">
+							<label for="exampleFormControlSelect2">Example multiple select</label>
+							<select multiple class="form-control" id="exampleFormControlSelect2">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>-->
+						<!--<div class="form-group">
+							<label for="exampleFormControlTextarea1">Example textarea</label>
+							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+						</div>-->
+					</form>
 				</main>
 			</div>
 		</div>
