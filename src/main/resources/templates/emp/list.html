@@ -73,8 +73,30 @@
 									<td>[[${emp.gender} == 0 ?'女':'男']]</td>
 									<td>[[${emp.department.departmentName}]]</td>
 									<td>[[${#dates.format(emp.birth,'yyyy-MM-dd hh:mm:ss')}]]</td>
-									<td><a type="button" class="btn btn-primary btn-sm" th:href="@{/emp/modify/}+${emp.id}">编辑</a><button type="button" class="btn btn-sm btn-danger">删除</button></td>
+									<!-- th:attr=""可以自定义一个变量并赋值，常配合JavaScript使用 -->
+									<td><a type="button" class="btn btn-sm btn-primary form-check" th:href="@{/emp/modify/}+${emp.id}">编辑</a><button name="deletebtn" th:attr="deleteurl=@{/emp/}+${emp.id}" type="button" class="btn btn-sm btn-danger deletebtn">删除</button>
+										<!-- 删除可以用以下方式删除，但是每一行数据都引入了一个form表单，使页面加载缓慢，并影响页面布局-->
+										<!--<form th:action="@{/emp/}+${emp.id}" th:method="post">
+											<input type="hidden" name="_method" value="delete">
+											<button type="submit" class="btn btn-sm btn-danger">删除</button>
+										</form>-->
+									</td>
 								</tr>
+							<form id="deleteform">
+								<!-- 修改提交方式为delete -->
+								<input type="hidden" name="_method" value="delete">
+							</form>
+
+							<script>
+								/* 可以把html组件的class名当成对象的标识，然后操作对象*/
+								/* javascrip中有onclick事件，在JQurey中是click事件！*/
+								$(".deletebtn").click(function(){
+								    /* $(this)代表当前组件，即为button，$(this).attr()是获取当前对象的某个属性的值*/
+								    $("#deleteform").attr("action",$(this).attr("deleteurl")).submit;
+								    /* 取消当前对象的默认行为 */
+                                    return false;
+                                })
+							</script>
 							</tbody>
 
 						</table>
@@ -86,18 +108,18 @@
 		<!-- Bootstrap core JavaScript
     ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"></script>
-		<script type="text/javascript" src="asserts/js/popper.min.js"></script>
-		<script type="text/javascript" src="asserts/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.0/jquery.js}"></script>
+		<script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/static/asserts/js/popper.min.js}"></script>
+		<script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.js}"></script>
 
 		<!-- Icons -->
-		<script type="text/javascript" src="asserts/js/feather.min.js"></script>
+		<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/static/asserts/js/feather.min.js}"></script>
 		<script>
 			feather.replace()
 		</script>
 
 		<!-- Graphs -->
-		<script type="text/javascript" src="asserts/js/Chart.min.js"></script>
+		<script type="text/javascript" src="asserts/js/Chart.min.js" th:src="@{/webjars/chartjs/2.7.3/Chart.js}"></script>
 		<script>
 			var ctx = document.getElementById("myChart");
 			var myChart = new Chart(ctx, {

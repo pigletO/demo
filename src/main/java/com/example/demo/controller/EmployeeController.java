@@ -44,8 +44,6 @@ public class EmployeeController {
     public String toAddPage(Map map){
         List<Department> departments = new ArrayList<Department>(departmentDao.getDepartments());
         map.put("departments", departments);
-        // 员工添加页面的按钮显示为‘添加’
-        map.put("submitflag",0);
         return "/emp/add";
     }
 
@@ -81,15 +79,27 @@ public class EmployeeController {
         List<Department> departments = new ArrayList<>(departmentDao.getDepartments());
         // 将emp/add.html中的添加按钮更名为修改
         model.addAttribute("emp", emp);
-        model.addAttribute("submitflag", 1);
         model.addAttribute("departments", departments);
         return "emp/add";
     }
 
+    /****
+     * 修改员工信息，并刷新员工列表页面
+     * @param employee
+     * @return
+     */
     @PutMapping("/emp")
-    public String modifiedEmployee(){
+    public String modifiedEmployee(Employee employee){
+        employeeDao.save(employee);
 
         return "redirect:/list";
     }
 
+
+    @DeleteMapping("/emp/{id}")
+    public String deleteEmployee(@PathVariable("id")int id){
+
+        employeeDao.delete(id);
+        return "redirect:/list";
+    }
 }

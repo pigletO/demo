@@ -52,22 +52,29 @@
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 					<h3>addEmployeePage</h3>
 					<form action="/emp" method="post" th:action="@{/emp}" th:method="post">
+						<!-- springMVC中提交get、post请求以为的请求方式时，需要添加HiddenHttpMethodFilter过滤器 -->
+						<!-- 然后创建一个input表单 type为hidden name为_method value为请求方式 -->
+						<!-- springboot自动配置了HiddenHttpMethodFilter过滤器，所以省去了添加过滤器的步骤 -->
+						<!-- 提交方式为put，不区分大小写，用th:if标签判断当前页面功能为修改还是添加，添加员工时${{emp}为null}}-->
+						<input type="hidden" name="_method" value="put" th:if="${emp!=null}">
 						<div class="form-group">
 							<label for="exampleFormControlInput1">EmployeeName</label>
-							<input type="text" class="form-control" name="lastName" id="exampleFormControlInput1" placeholder="张 三" th:if="${emp}" th:value="${emp.lastName}">
+							<input type="hidden" name="id" th:if="${emp!=null}" th:value="${emp.id}">
+							<!-- th:if="${emp!=null}" th:value="${emp.lastName}"" 并不能等价于th:value="${emp!=null}?${emp.lastName}" 不知道为啥-->
+							<input type="text" class="form-control" name="lastName" id="exampleFormControlInput1" placeholder="张 三" th:value="${emp!=null}?${emp.lastName}">
 						</div>
 						<div class="form-group">
 							<label for="exampleFormControlInput1">Email address</label>
-							<input type="email" class="form-control" name="email" id="exampleFormControlInput2" placeholder="name@example.com" th:if="${emp}" th:value="${emp.email}">
+							<input type="email" class="form-control" name="email" id="exampleFormControlInput2" placeholder="name@example.com" th:value="${emp!=null}?${emp.email}">
 						</div>
 						<div class="form-group">
 							<label for="exampleFormControlInput1">Gender</label><br>
 							<div class="form-check form-check-inline">
-							<input type="radio" class="form-check-input" name="gender" value="1" id="exampleFormControlInput3" th:if="${emp}" th:checked="${emp.gender}==1">
+							<input type="radio" class="form-check-input" name="gender" value="1" id="exampleFormControlInput3" th:checked="${emp!=null}?${emp.gender}==1">
 							<label class="form-check-label">男</label>
 							</div>
 							<div class="form-check form-check-inline">
-							<input type="radio" class="form-check-input" name="gender" value="0" id="exampleFormControlInput4" th:if="${emp}" th:checked="${emp.gender}==0">
+							<input type="radio" class="form-check-input" name="gender" value="0" id="exampleFormControlInput4" th:checked="${emp!=null}?${emp.gender}==0">
 							<label class="form-check-label">女</label>
 							</div>
 						</div>
@@ -75,14 +82,14 @@
 							<label for="exampleFormControlSelect1">DepartmentName</label>
 							<select class="form-control" id="exampleFormControlSelect1" name="department.id">
 								<!-- SpringMVC通过那么获取的是value属性所对应的数值-->
-								<option th:if="${emp}" th:onselect="${emp.department.id == dep.id}" th:each="dep : ${departments}"  th:value="${dep.id}" th:text="${dep.departmentName}">部门名称一</option>
+								<option th:selected="${emp!=null}?${emp.department.id == dep.id}" th:each="dep : ${departments}"  th:value="${dep.id}" th:text="${dep.departmentName}">部门名称一</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="exampleFormControlInput1">BirthDay</label>
-							<input type="text" class="form-control" name="birth" id="exampleFormControlInput4" placeholder="1995-06-29 09:16:48" th:if="${emp}" th:value="${emp.birth}">
+							<input type="text" class="form-control" name="birth" id="exampleFormControlInput4" placeholder="1995-06-29 09:16:48" th:value="${emp!=null}?${#dates.format(emp.birth,'yyyy-MM-dd hh:ss::mm')}">
 						</div>
-						<p><button type="submit" class="btn btn-success btn-sm" th:text="${submitflag}==1?'修改':'添加'">添加</button><button type="reset" class="btn btn-sm btn-danger">重置</button> </p>
+						<p><button type="submit" class="btn btn-primary btn-sm" th:text="${emp}!=null?'修改':'添加'">添加</button><button type="reset" class="btn btn-sm btn-danger">重置</button> </p>
 						<!--<div class="form-group">
 							<label for="exampleFormControlSelect2">Example multiple select</label>
 							<select multiple class="form-control" id="exampleFormControlSelect2">
@@ -105,18 +112,18 @@
 		<!-- Bootstrap core JavaScript
     ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"></script>
-		<script type="text/javascript" src="asserts/js/popper.min.js"></script>
-		<script type="text/javascript" src="asserts/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.0/jquery.js}"></script>
+		<script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/static/asserts/js/popper.min.js}"></script>
+		<script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.js}"></script>
 
 		<!-- Icons -->
-		<script type="text/javascript" src="asserts/js/feather.min.js"></script>
+		<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/static/asserts/js/feather.min.js}"></script>
 		<script>
 			feather.replace()
 		</script>
 
 		<!-- Graphs -->
-		<script type="text/javascript" src="asserts/js/Chart.min.js"></script>
+		<script type="text/javascript" src="asserts/js/Chart.min.js" th:src="@{/static/asserts/js/Chart.min.js}"></script>
 		<script>
 			var ctx = document.getElementById("myChart");
 			var myChart = new Chart(ctx, {
