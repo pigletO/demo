@@ -14,6 +14,9 @@ spring:
   #禁用thymeleaf模板引擎的缓存功能
   thymeleaf:
     cache: false
+#    webMVC默认的输入的时间格式为yyyy/MM/dd
+  mvc:
+    date-format: yyyy-MM-dd
 #  mvc:
 #    static-path-pattern: classpath:/static/**
 

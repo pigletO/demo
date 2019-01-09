@@ -54,31 +54,35 @@
 					<form action="/emp" method="post" th:action="@{/emp}" th:method="post">
 						<div class="form-group">
 							<label for="exampleFormControlInput1">EmployeeName</label>
-							<input type="text" class="form-control" name="employeeName" id="exampleFormControlInput1" placeholder="张 三">
+							<input type="text" class="form-control" name="lastName" id="exampleFormControlInput1" placeholder="张 三" th:if="${emp}" th:value="${emp.lastName}">
 						</div>
 						<div class="form-group">
 							<label for="exampleFormControlInput1">Email address</label>
-							<input type="email" class="form-control" name="email" id="exampleFormControlInput2" placeholder="name@example.com">
+							<input type="email" class="form-control" name="email" id="exampleFormControlInput2" placeholder="name@example.com" th:if="${emp}" th:value="${emp.email}">
 						</div>
 						<div class="form-group">
-							<label for="exampleFormControlInput1">Gender</label>
-							<input type="text" class="form-control" name="gender" id="exampleFormControlInput3" placeholder="男">
+							<label for="exampleFormControlInput1">Gender</label><br>
+							<div class="form-check form-check-inline">
+							<input type="radio" class="form-check-input" name="gender" value="1" id="exampleFormControlInput3" th:if="${emp}" th:checked="${emp.gender}==1">
+							<label class="form-check-label">男</label>
+							</div>
+							<div class="form-check form-check-inline">
+							<input type="radio" class="form-check-input" name="gender" value="0" id="exampleFormControlInput4" th:if="${emp}" th:checked="${emp.gender}==0">
+							<label class="form-check-label">女</label>
+							</div>
 						</div>
 						<div class="form-group">
 							<label for="exampleFormControlSelect1">DepartmentName</label>
-							<select class="form-control" id="exampleFormControlSelect1" name="departmentName">
-								<option>IT研发一部</option>
-								<option>IT研发二部</option>
-								<option>IT研发三部</option>
-								<option>IT研发四部</option>
-								<option>IT研发五部</option>
+							<select class="form-control" id="exampleFormControlSelect1" name="department.id">
+								<!-- SpringMVC通过那么获取的是value属性所对应的数值-->
+								<option th:if="${emp}" th:onselect="${emp.department.id == dep.id}" th:each="dep : ${departments}"  th:value="${dep.id}" th:text="${dep.departmentName}">部门名称一</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="exampleFormControlInput1">BirthDay</label>
-							<input type="text" class="form-control" name="birthDay" id="exampleFormControlInput4" placeholder="1995-06-29 09:16:48">
+							<input type="text" class="form-control" name="birth" id="exampleFormControlInput4" placeholder="1995-06-29 09:16:48" th:if="${emp}" th:value="${emp.birth}">
 						</div>
-						<p><button type="submit" class="btn btn-success btn-sm">添加</button><button type="reset" class="btn btn-sm btn-danger">重置</button> </p>
+						<p><button type="submit" class="btn btn-success btn-sm" th:text="${submitflag}==1?'修改':'添加'">添加</button><button type="reset" class="btn btn-sm btn-danger">重置</button> </p>
 						<!--<div class="form-group">
 							<label for="exampleFormControlSelect2">Example multiple select</label>
 							<select multiple class="form-control" id="exampleFormControlSelect2">
