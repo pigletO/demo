@@ -14,8 +14,10 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
         if(loginUser == null){
             // 直接取request，进行setAttribute
             request.setAttribute("msg","用户未登录，请先登录！");
-            // 没有拿到已经登录的用户名，重定向到登录界面
+            // 没有拿到已经登录的用户名，转发到登录界面，****此处只能用转发，做服务器内转发的时候从第一次请求到响应都共用同一个request和response，重定向的时候是多次request和response对象
             request.getRequestDispatcher("/index").forward(request,response);
+            // 重定向
+            //response.sendRedirect("/index");
             // 不放行
             return false;
         }

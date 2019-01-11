@@ -74,7 +74,8 @@
 									<td>[[${emp.department.departmentName}]]</td>
 									<td>[[${#dates.format(emp.birth,'yyyy-MM-dd hh:mm:ss')}]]</td>
 									<!-- th:attr=""可以自定义一个变量并赋值，常配合JavaScript使用 -->
-									<td><a type="button" class="btn btn-sm btn-primary form-check" th:href="@{/emp/modify/}+${emp.id}">编辑</a><button name="deletebtn" th:attr="deleteurl=@{/emp/}+${emp.id}" type="button" class="btn btn-sm btn-danger deletebtn">删除</button>
+									<td><a type="button" class="btn btn-sm btn-primary form-check" th:href="@{/emp/modify/}+${emp.id}">编辑</a>
+										<button name="deletebtn" th:attr="deleteurl=@{/emp/}+${emp.id}" type="button" class="btn btn-sm btn-danger deletebtn">删除</button>
 										<!-- 删除可以用以下方式删除，但是每一行数据都引入了一个form表单，使页面加载缓慢，并影响页面布局-->
 										<!--<form th:action="@{/emp/}+${emp.id}" th:method="post">
 											<input type="hidden" name="_method" value="delete">
@@ -82,24 +83,23 @@
 										</form>-->
 									</td>
 								</tr>
-							<form id="deleteform">
-								<!-- 修改提交方式为delete -->
-								<input type="hidden" name="_method" value="delete">
-							</form>
-
-							<script>
-								/* 可以把html组件的class名当成对象的标识，然后操作对象*/
-								/* javascrip中有onclick事件，在JQurey中是click事件！*/
-								$(".deletebtn").click(function(){
-								    /* $(this)代表当前组件，即为button，$(this).attr()是获取当前对象的某个属性的值*/
-								    $("#deleteform").attr("action",$(this).attr("deleteurl")).submit;
-								    /* 取消当前对象的默认行为 */
-                                    return false;
-                                })
-							</script>
 							</tbody>
-
 						</table>
+						<form id="deleteform">
+							<!-- 修改提交方式为delete -->
+							<input type="hidden" name="_method" value="delete">
+						</form>
+
+						<script>
+                            /* 可以把html组件的class名当成对象的标识，然后操作对象*/
+                            /* javascrip中有onclick事件，在JQurey中是click事件！*/
+                            $(".deletebtn").click(function(){
+                                /* $(this)代表当前组件，即为button，$(this).attr()是获取当前对象的某个属性的值*/
+                                $("#deleteform").attr("action",$(this).attr("deleteurl")).submit;
+                                /* 取消当前对象的默认行为 */
+                                return false;
+                            })
+						</script>
 					</div>
 				</main>
 			</div>
