@@ -40,6 +40,19 @@
 				animation: chartjs-render-animation 0.001s;
 			}
 		</style>
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.0/jquery.js}"></script>
+		<script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/static/asserts/js/popper.min.js}"></script>
+		<script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.js}"></script>
+
+		<!-- Icons -->
+		<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/static/asserts/js/feather.min.js}"></script>
+		<script>
+            feather.replace()
+		</script>
+
+		<!-- Graphs -->
+		<script type="text/javascript" src="asserts/js/Chart.min.js" th:src="@{/webjars/chartjs/2.7.3/Chart.js}"></script>
+		<!--<script src="../../static/asserts/js/Chart.min.js"></script>-->
 	</head>
 
 	<body>
@@ -83,19 +96,23 @@
 										</form>-->
 									</td>
 								</tr>
+								<!-- 这里一定要注明method为post，springmvc的HiddenHttpMethodFilter过滤器判断请求为post时才能进行修改请求方式-->
+								<form id="deleteform" th:method="post">
+									<!-- 修改提交方式为delete -->
+									<input type="hidden" name="_method" value="delete">
+								</form>
 							</tbody>
+
 						</table>
-						<form id="deleteform">
-							<!-- 修改提交方式为delete -->
-							<input type="hidden" name="_method" value="delete">
-						</form>
+
 
 						<script>
                             /* 可以把html组件的class名当成对象的标识，然后操作对象*/
                             /* javascrip中有onclick事件，在JQurey中是click事件！*/
                             $(".deletebtn").click(function(){
+                                //$(this).attr("deleteurl")
                                 /* $(this)代表当前组件，即为button，$(this).attr()是获取当前对象的某个属性的值*/
-                                $("#deleteform").attr("action",$(this).attr("deleteurl")).submit;
+                                $("#deleteform").attr("action",$(this).attr("deleteurl")).submit();
                                 /* 取消当前对象的默认行为 */
                                 return false;
                             })
@@ -108,18 +125,8 @@
 		<!-- Bootstrap core JavaScript
     ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.0/jquery.js}"></script>
-		<script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/static/asserts/js/popper.min.js}"></script>
-		<script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.js}"></script>
 
-		<!-- Icons -->
-		<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/static/asserts/js/feather.min.js}"></script>
-		<script>
-			feather.replace()
-		</script>
 
-		<!-- Graphs -->
-		<script type="text/javascript" src="asserts/js/Chart.min.js" th:src="@{/webjars/chartjs/2.7.3/Chart.js}"></script>
 		<script>
 			var ctx = document.getElementById("myChart");
 			var myChart = new Chart(ctx, {

@@ -51,8 +51,9 @@
 
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 					<h3>addEmployeePage</h3>
+					<!-- 这里一定要注明method为post，springmvc的HiddenHttpMethodFilter过滤器判断请求为post时才能进行修改请求方式-->
 					<form action="/emp" method="post" th:action="@{/emp}" th:method="post">
-						<!-- springMVC中提交get、post请求以为的请求方式时，需要添加HiddenHttpMethodFilter过滤器 -->
+						<!-- springMVC中提交get、post请求以外的请求方式时，需要添加HiddenHttpMethodFilter过滤器 -->
 						<!-- 然后创建一个input表单 type为hidden name为_method value为请求方式 -->
 						<!-- springboot自动配置了HiddenHttpMethodFilter过滤器，所以省去了添加过滤器的步骤 -->
 						<!-- 提交方式为put，不区分大小写，用th:if标签判断当前页面功能为修改还是添加，添加员工时${{emp}为null}}-->
@@ -87,7 +88,7 @@
 						</div>
 						<div class="form-group">
 							<label for="exampleFormControlInput1">BirthDay</label>
-							<input type="text" class="form-control" name="birth" id="exampleFormControlInput4" placeholder="1995-06-29 09:16:48" th:value="${emp!=null}?${#dates.format(emp.birth,'yyyy-MM-dd hh:ss::mm')}">
+							<input type="text" class="form-control" name="birth" id="exampleFormControlInput4" placeholder="1995-06-29 09:16:48" th:value="${emp!=null}?${#dates.format(emp.birth,'yyyy-MM-dd hh:ss:mm')}">
 						</div>
 						<p><button type="submit" class="btn btn-primary btn-sm" th:text="${emp}!=null?'修改':'添加'">添加</button><button type="reset" class="btn btn-sm btn-danger">重置</button> </p>
 						<!--<div class="form-group">
