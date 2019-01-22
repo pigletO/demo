@@ -16,7 +16,7 @@
 
 	<body class="text-center">
 		<form class="form-signin" action="/user/dashboard" method="post">
-			<img class="mb-4" src="asserts/img/bootstrap-solid.svg" th:src="@{/asserts/img/bootstrap-solid.svg}" alt="" width="72" height="72">
+			<imgclass="mb-4" src="asserts/img/bootstrap-solid.svg" th:src="@{/asserts/img/bootstrap-solid.svg}" alt="" width="72" height="72">
 			<h1 class="h3 mb-3 font-weight-normal" th:text="#{login.title}">Please sign in</h1>
 			<span style="color: red" id="msg-span" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></span>
 			<label class="sr-only">Username</label>

@@ -14,7 +14,19 @@
 
 		<!-- Custom styles for this template -->
 		<link href="asserts/css/dashboard.css" th th:href="@{/static/asserts/css/dashboard.css}" rel="stylesheet">
-		<style type="text/css">
+        <script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.0/jquery.js}"></script>
+        <script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/static/asserts/js/popper.min.js}"></script>
+        <script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.js}"></script>
+
+        <!-- Icons -->
+        <script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/static/asserts/js/feather.min.js}"></script>
+        <script>
+            feather.replace()
+        </script>
+
+        <!-- Graphs -->
+        <script type="text/javascript" src="asserts/js/Chart.min.js" th:src="@{/static/asserts/js/Chart.min.js}"></script>
+        <style type="text/css">
 			/* Chart.js */
 			
 			@-webkit-keyframes chartjs-render-animation {
@@ -40,6 +52,12 @@
 				animation: chartjs-render-animation 0.001s;
 			}
 		</style>
+        <script>
+            // 页面加载时就运行
+        $(function () {
+            alert($("#token").val())
+        })
+        </script>
 	</head>
 
 	<body>
@@ -48,6 +66,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div th:replace="common/bar :: #sidebar(activeUrl='/list')"></div>
+                <input type="hidden" id="token" name="token" th:value="${token}" style="visibility: hidden;display: none "/>
 
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 					<h3>addEmployeePage</h3>
@@ -113,18 +132,7 @@
 		<!-- Bootstrap core JavaScript
     ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.0/jquery.js}"></script>
-		<script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/static/asserts/js/popper.min.js}"></script>
-		<script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.js}"></script>
 
-		<!-- Icons -->
-		<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/static/asserts/js/feather.min.js}"></script>
-		<script>
-			feather.replace()
-		</script>
-
-		<!-- Graphs -->
-		<script type="text/javascript" src="asserts/js/Chart.min.js" th:src="@{/static/asserts/js/Chart.min.js}"></script>
 		<script>
 			var ctx = document.getElementById("myChart");
 			var myChart = new Chart(ctx, {

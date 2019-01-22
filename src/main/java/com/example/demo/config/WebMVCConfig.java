@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.*;
 import java.util.Locale;
 
 // 声明此类为配置类，实现WebMvcConfigurer类，实现其中的方法，实现拓展配置springmvc
-// 区别于WebMvcConfigurationSupport类，继承WebMvcConfigurationSupport类，会springboot对MVC的自动配置！！
+// 区别于WebMvcConfigurationSupport类，继承WebMvcConfigurationSupport类，会覆盖springboot对MVC的自动配置！！
 @Configuration
 public class WebMVCConfig implements WebMvcConfigurer {
 
@@ -41,8 +41,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
         String[] excludePathPatterns = {"/index", "/index.html", "/user/dashboard","/static/**", "/webjars/**", "classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"};
         // 在springboot1.x下，webjars请求下的静态资源不需要排除，springboot已经做好了静态映射
         // 拦截/** 项目的所有请求，但要把请求登录页面和登录执行的RequestMapping除外
-       // registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns(excludePathPatterns);
-       //registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/main.html");
+        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns(excludePathPatterns);
 
     }
 

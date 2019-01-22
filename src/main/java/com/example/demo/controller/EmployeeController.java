@@ -5,10 +5,13 @@ import com.example.demo.dao.EmployeeDao;
 import com.example.demo.entity.Department;
 import com.example.demo.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -41,9 +44,16 @@ public class EmployeeController {
      * @return
      */
     @GetMapping("/emp")
-    public String toAddPage(Map map){
+    public String toAddPage(HttpServletRequest request, HttpServletResponse response, Map map){
+        /*UUID token = UUID.randomUUID();
+        // 将token存储到session中
+        request.getSession().setAttribute("token",token.toString());
+        request.setAttribute("token",token.toString());*/
         List<Department> departments = new ArrayList<Department>(departmentDao.getDepartments());
         map.put("departments", departments);
+        //map.put("token", token.toString());
+        /*System.err.println("session : "+ request.getSession().getAttribute("token"));
+        System.err.println("request : "+ request.getAttribute("token"));*/
         return "/emp/add";
     }
 

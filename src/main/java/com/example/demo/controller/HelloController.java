@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
+import java.util.UUID;
 
 /*@RestController
 @EnableAutoConfiguration*/
@@ -24,7 +25,8 @@ public class HelloController {
     @RequestMapping("/hello")
     public String hello(){
         logger.info("执行hello请求！");
-        return "myFirst SpringBoot Demo!!!!!";
+        /*return "myFirst SpringBoot Demo!!!!!";*/
+        return UUID.randomUUID().toString().substring(0, 16);
     }
 
     @RequestMapping("/abc")
