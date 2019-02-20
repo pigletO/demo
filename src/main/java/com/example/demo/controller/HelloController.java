@@ -55,6 +55,7 @@ public class HelloController {
     //@RequestMapping(value = "/dashboard",method = RequestMethod.POST)
     @PostMapping(value = "/user/dashboard")
     public String turnToDashboard(String Username, String Password, Map<String,Object> map, HttpSession session){
+        System.out.println("/user/dashboard");
         if("123".equals(Password)) {
             // 向Session中添加参数，以判断是否有用户已经登录
             session.setAttribute("loginUser", Username);

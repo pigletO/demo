@@ -17,6 +17,9 @@ spring:
 #    webMVC默认的输入的时间格式为yyyy/MM/dd
   mvc:
     date-format: yyyy-MM-dd
+#   激活指定配置
+  profiles:
+    active: dev
 #  mvc:
 #    static-path-pattern: classpath:/static/**
 
@@ -44,3 +47,9 @@ spring:
 #       formcontent:
 #         putfilter:
 #           enabled
+
+---
+spring:
+     profiles: dev
+server:
+  port: 8088

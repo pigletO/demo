@@ -13,12 +13,48 @@
                         alert("外部内容加载成功！");
                 })
             })
+
+            $("#b01").click(function(){
+                htmlobj=$.ajax({url:"/user/dashboard", data:{Username:123,Password:123},type:"POST"});
+                alert(htmlobj.responseText);
+                $("#myDiv").html(htmlobj.responseText);
+            });
+
+
+            $("#b02").click(function () {
+                $.ajax({
+                    type : "POST",
+                    url : "/user/dashboard",
+                    data : {
+                        "Username" : "123",
+                        "Password" : "123"
+                    },
+                    success: function(data){
+
+                        // var result = $(data).find("#sidebar");
+
+                        $("#div2").html($(data));}
+                });
+            })
+
+
+
+
         })
     </script>
     
 </head>
 <body>
 <button id="btn">调用ajax</button>
-<div id="div1"></div>
+<div id="div1"></div><br>
+
+<div id="myDiv"><h2>Let AJAX change this text</h2></div>
+<button id="b01" type="button">Change Content</button><br>
+<button id="b02" type="button">ajax加载外部页面!</button>
+<div id="div2"></div>
+
+<span>
+
+</span>
 </body>
 </html>
