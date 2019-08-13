@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>Signin Template for Bootstrap</title>
+		<!-- Bootstrap core CSS -->
+		<link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.css}" rel="stylesheet">
+		<!-- Custom styles for this template -->
+		<link href="asserts/css/signin.css" th:href="@{/static/asserts/css/signin.css}" rel="stylesheet">
+
+		<script th:src="@{/webjars/jquery/3.3.0/jquery.js}"></script>
+	</head>
+
+	<body class="text-center">
+		<form class="form-signin" action="/user/dashboard" method="post">
+			<img class="mb-4" src="asserts/img/bootstrap-solid.svg" th:src="@{/asserts/img/bootstrap-solid.svg}" alt="" width="72" height="72">
+			<h1 class="h3 mb-3 font-weight-normal" th:text="#{login.title}">Please sign in</h1>
+			<span style="color: red" id="msg-span" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></span>
+			<label class="sr-only">Username</label>
+			<input type="text" id="Username" name="Username" class="form-control" placeholder="Username" required autofocus th:placeholder="#{login.username}" onkeydown="makeSpanHidden()">
+			<label class="sr-only">Password</label>
+			<input type="password" name="Password" class="form-control" placeholder="Password" required th:placeholder="#{login.password}">
+			<div class="checkbox mb-3">
+				<label>
+          <input type="checkbox" value="remember-me">[[#{login.remember}]]
+        </label>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.signin}">Sign in</button>
+			<p class="mt-5 mb-3 text-muted">© 2018-2019</p>
+			<a class="btn btn-sm" th:href="@{/index.html(l='zh_CN')}">中文</a>
+			<a class="btn btn-sm" th:href="@{/index.html(l='en_US')}">English</a>
+		</form>
+
+	<script>
+		// 当输入用户名的时候隐藏错误提示信息
+        function makeSpanHidden() {
+			$("#msg-span").css("visibility","hidden");
+            $("#msg-span").css("display","none");
+        }
+
+        function doAction() {
+            var actionPath = $('#Username').val() + "/dashboard";
+            alert(actionPath.toLocaleString());
+			return actionPath.toLocaleString();
+        }
+	</script>
+
+	</body>
+
+</html>

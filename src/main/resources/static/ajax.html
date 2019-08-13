@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>myAjax</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" th:src="@{/webjars/jquery/3.3.0/jquery.js}"></script>
+    <script>
+        
+        
+        $(function () {
+            $("#btn").click(function () {
+                $("#div1").load("/hello",function () {
+                        alert("外部内容加载成功！");
+                })
+            })
+        })
+    </script>
+    
+</head>
+<body>
+<button id="btn">调用ajax</button>
+<div id="div1"></div>
+</body>
+</html>
