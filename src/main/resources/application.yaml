@@ -43,5 +43,5 @@ spring:
 #     mvc:
 #       formcontent:
 server:
-  port: 999999
+  port: 8088
 #           enabled
